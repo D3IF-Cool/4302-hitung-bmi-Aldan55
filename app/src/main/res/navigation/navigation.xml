@@ -18,6 +18,10 @@
         android:id="@+id/saranFragment"
         android:name="org.d3if0042.hitungbmi.ui.SaranFragment"
         android:label="SaranFragment"
-        tools:layout="@layout/fragment_saran"/>
+        tools:layout="@layout/fragment_saran">
+        <argument
+            android:name="kategori"
+            app:argType="org.d3if0042.hitungbmi.data.KategoriBmi" />
+    </fragment>
 
 </navigation>
