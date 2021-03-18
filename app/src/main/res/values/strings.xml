@@ -3,7 +3,10 @@
     <string name="app_name">Hitung BMI</string>
     <string name="berat">Berat badan (kg):</string>
     <string name="tinggi">Tinggi badan(cm):</string>
-    <string name="jenis_kelamin">Jenis Kelamin:</string>
+    <string name="jenis_kelamin">Jenis Kelamin: </string>
+    <string name="berat_x">Berat badan (kg): %1$s</string>
+    <string name="tinggi_x">Tinggi badan(cm): %1$s</string>
+    <string name="jenis_kelamin_x">Jenis Kelamin: %1$s</string>
     <string name="pria">Pria</string>
     <string name="wanita">Wanita</string>
     <string name="hitung">Hitung</string>
@@ -30,5 +33,6 @@
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_template">Berat badan: %1$s kg\nTinggi badan: %2$s cm\nJenis kelamin: %3$s\n\n%4$s\n%5$s</string>
+    <string name="bagikan_template_x">%1$s\n%2$s\n%3$s\n\n%4$s\n%5$s</string>
 
 </resources>

@@ -33,11 +33,18 @@ class HitungFragment : Fragment(){
         binding.button.setOnClickListener{hitung()}
         binding.button2.setOnClickListener{reset()}
         binding.shareButton.setOnClickListener { shareData() }
-        binding.saranButton.setOnClickListener{view: View ->
-            view.findNavController().navigate(
-                HitungFragmentDirections.
-                actionHitungFragmentToSaranFragment(kategoriBmi)
-            )
+        binding.saranButton.setOnClickListener{
+            val berat= binding.beratTf.text.toString()
+            val tinggi= binding.tinggiTf.text.toString()
+            val selectedId= binding.radioGroup.checkedRadioButtonId
+            val sex= if (selectedId == R.id.priaRB)
+                getString(R.string.pria)
+            else
+                getString(R.string.wanita)
+            val bmi= binding.bmiTextView.text.toString()
+
+            val action= HitungFragmentDirections.actionHitungFragmentToSaranFragment(kategoriBmi, berat, tinggi, sex, bmi)
+            findNavController().navigate(action)
 
         }
         setHasOptionsMenu(true)
