@@ -12,10 +12,9 @@ import org.d3if0042.hitungbmi.R
 import org.d3if0042.hitungbmi.data.KategoriBmi
 import org.d3if0042.hitungbmi.databinding.FragmentHitungBinding
 
-class HitungFragment : Fragment(){
+class HitungFragment : Fragment() {
     private val viewModel: HitungViewModel by viewModels()
     private lateinit var binding: FragmentHitungBinding
-    private lateinit var kategoriBmi: KategoriBmi
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.option_menu, menu)
@@ -33,26 +32,22 @@ class HitungFragment : Fragment(){
         binding.button.setOnClickListener{hitung()}
         binding.button2.setOnClickListener{reset()}
         binding.shareButton.setOnClickListener { shareData() }
-        binding.saranButton.setOnClickListener{
-            val berat= binding.beratTf.text.toString()
-            val tinggi= binding.tinggiTf.text.toString()
-            val selectedId= binding.radioGroup.checkedRadioButtonId
-            val sex= if (selectedId == R.id.priaRB)
-                getString(R.string.pria)
-            else
-                getString(R.string.wanita)
-            val bmi= binding.bmiTextView.text.toString()
+        binding.saranButton.setOnClickListener { viewModel.mulaiNavigasi() }
 
-            val action= HitungFragmentDirections.actionHitungFragmentToSaranFragment(kategoriBmi, berat, tinggi, sex, bmi)
-            findNavController().navigate(action)
-
-        }
         setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getNavigasi().observe(viewLifecycleOwner, {
+            if (it == null) return@observe
+            findNavController().navigate(HitungFragmentDirections
+                    .actionHitungFragmentToSaranFragment(it))
+            viewModel.selesaiNavigasi()
+        })
+
         viewModel.getHasilBmi().observe(viewLifecycleOwner, {
             if (it == null) return@observe
             binding.bmiTextView.text = getString(R.string.bmi_x, it.bmi)
